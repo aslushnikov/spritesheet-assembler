@@ -1,0 +1,20 @@
+{
+  "name": "spritesheet-assembler",
+  "version": "1.0.0",
+  "description": "Spritesheet assembler with support for SVG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spritesheet"
+  ],
+  "author": "The Chromium Authors",
+  "license": "SEE LICENSE IN https://chromium.googlesource.com/chromium/src/+/master/LICENSE",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "image-size": "^0.5.1",
+    "postsvg-rename-id": "0.0.1"
+  }
+}
