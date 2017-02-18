@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var postsvg = require('postsvg');
 var renameId = require('postsvg-rename-id');
 
@@ -11,6 +12,10 @@ class SVGCompositor {
     var svgBody = '';
     var spriteId = 0;
     for (var sprite of spriteSheet.sprites()) {
+      if (sprite.mimeType !== 'image/svg+xml') {
+        var error = 'Cannot compose non-svg sprite ' + path.basename(sprite.filePath) + '  of type ' + sprite.mimeType;
+        throw new Error(error);
+      }
       var spriteSVG = fs.readFileSync(sprite.filePath, 'utf-8').trim();
 
       // Strip of <?xml> header, if any.
