@@ -2,12 +2,12 @@ var mime = require('mime');
 var fs = require('fs');
 var sizeOf = require('image-size');
 var path = require('path');
-var SVGSprite = require('./lib/SVGSprite');
+var Sprite = require('./lib/Sprite');
 
 var utils = {
     /**
      * @param {string} directoryPath
-     * @return {!Array<!SVGSprite>}
+     * @return {!Array<!Sprite>}
      */
     readSpritesFromFolder: function(directoryPath) {
         var filePaths = fs.readdirSync(directoryPath)
@@ -24,12 +24,12 @@ var utils = {
 
     /**
      * @param {string} filePath
-     * @return {!SVGSprite}
+     * @return {!Sprite}
      */
     readSprite: function(filePath) {
         var dimensions = sizeOf(filePath);
         var mimeType = mime.lookup(filePath);
-        return new SVGSprite(filePath, mimeType, dimensions.width, dimensions.height);
+        return new Sprite(filePath, mimeType, dimensions.width, dimensions.height);
     },
 
     /**
