@@ -1,7 +1,10 @@
 var fs = require('fs');
+var path = require('path');
+var mime = require('mime');
+var utils = require('./utils');
 var Packer = require('./lib/Packer');
-var SVGCompositor = require('./lib/SVGCompositor');
-var utils = require('./lib/utils');
+var compositors = require('./compositors');
+var descriptors = require('./descriptors');
 
 var timestamp = 0;
 function markStart() {
@@ -12,21 +15,33 @@ function markEnd(label) {
 }
 
 var cliArguments = require('./cliArguments');
+var outputMimeType = mime.lookup(cliArguments.outputImagePath);
+var compositor = compositors[outputMimeType];
+if (!compositor)
+    die('Cannot generate output image with mime type ' + outputMimeType);
+var descriptor = descriptors[cliArguments.descriptorType];
+if (!descriptor)
+    die('Cannot find descriptor generator of type ' + cliArguments.descriptorType);
 
 // 1. Read all the svg files from given directory.
 markStart();
 var sprites = utils.readSpritesFromFolder(cliArguments.inputFolderPath);
 markEnd('Loaded ' + sprites.length + ' files');
 
-// 2. Iterate over different sprite compositions to find best.
+// 2. Build optimal spritesheet.
 markStart();
-var bestStyleSheet = Packer.packEfficiently(sprites, cliArguments.padding, cliArguments.padding);
-var bestCoverage = bestStyleSheet.coverage();
+var spriteSheet = Packer.packEfficiently(sprites, cliArguments.padding, cliArguments.padding);
 markEnd(
-  'Created spritesheet ' + bestStyleSheet.width() + 'x' + bestStyleSheet.height() + ' with ' +
-  ((bestCoverage * 10000 | 0) / 100) + '% coverage');
+  'Created spritesheet ' + spriteSheet.width() + 'x' + spriteSheet.height() + ' with ' +
+  ((spriteSheet.coverage() * 10000 | 0) / 100) + '% coverage');
 
-// 3. Write results to disk
-fs.writeFileSync(cliArguments.outputImagePath, SVGCompositor.compose(bestStyleSheet));
-fs.writeFileSync(cliArguments.outputDescriptorPath, cliArguments.descriptor.generate(bestStyleSheet));
+// 3. Compose image and write descriptors.
+markStart();
+var resultImage = compositor.compose(spriteSheet);
+var resultDescriptor = descriptor.generate(spriteSheet);
+fs.writeFileSync(cliArguments.outputImagePath, resultImage);
+fs.writeFileSync(cliArguments.outputDescriptorPath, resultDescriptor);
+markEnd(
+  'Generated ' + path.basename(cliArguments.outputImagePath) + ' and ' +
+  path.basename(cliArguments.outputDescriptorPath));
 

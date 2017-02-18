@@ -1,18 +1,13 @@
 var fs = require('fs');
 var path = require('path');
-var descriptors = require('./descriptors');
-
-function die(message) {
-    console.error("FAILED: " + message);
-    process.exit(1);
-}
+var die = require('./utils').die;
 
 class CLIArguments {
-    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptor, padding) {
+    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, padding) {
         this.inputFolderPath = inputFolderPath;
         this.outputImagePath = outputImagePath;
         this.outputDescriptorPath = outputDescriptorPath;
-        this.descriptor = descriptor;
+        this.descriptorType = descriptorType;
         this.padding = padding;
     }
 }
@@ -21,7 +16,7 @@ function parseCommandLineArguments() {
     var inputFolderPath;
     var outputImagePath;
     var outputDescriptorPath;
-    var descriptor;
+    var descriptorType;
     var padding = 0; // Default padding is 0.
     for (var i = 2; i < process.argv.length; i += 2) {
         var key = process.argv[i].toLowerCase();
@@ -42,11 +37,9 @@ function parseCommandLineArguments() {
                 die('duplicate argument --output-descriptor');
             outputDescriptorPath = path.join(process.cwd(), value);
         } else if (key === '-t' || key === '--descriptor-type') {
-            if (descriptor)
+            if (descriptorType)
                 die('duplicate argument --descriptor-type');
-            descriptor = descriptors[value.toLowerCase()];
-            if (!descriptor)
-                die("Unknown value of --descriptor-type - " + value);
+            descriptorType = value.toLowerCase();
         } else if (key === '-p' || key === '--padding') {
             if (padding !== null)
                 die('duplicate argument --padding');
@@ -62,7 +55,7 @@ function parseCommandLineArguments() {
         die("Required argument --output-image is missing");
     if (!outputDescriptorPath)
         die("Required argument --output-descriptor is missing");
-    if (!descriptor)
+    if (!descriptorType)
         die("Required argument --descriptor-type is missing");
     // Validate options.
     if (!fs.existsSync(inputFolderPath))
@@ -71,7 +64,7 @@ function parseCommandLineArguments() {
         die("Folder for output image does not exist " + outputImagePath);
     if (!fs.existsSync(path.dirname(outputDescriptorPath)))
         die("Folder for output descriptor does not exist " + outputDescriptorPath);
-    return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptor, padding);
+    return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, padding);
 }
 
 // Call parsing right away.

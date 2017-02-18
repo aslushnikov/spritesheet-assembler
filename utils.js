@@ -2,7 +2,7 @@ var mime = require('mime');
 var fs = require('fs');
 var sizeOf = require('image-size');
 var path = require('path');
-var SVGSprite = require('./SVGSprite');
+var SVGSprite = require('./lib/SVGSprite');
 
 var utils = {
     /**
@@ -30,7 +30,15 @@ var utils = {
         var dimensions = sizeOf(filePath);
         var mimeType = mime.lookup(filePath);
         return new SVGSprite(filePath, mimeType, dimensions.width, dimensions.height);
-    }
+    },
+
+    /**
+     * @param {string} message
+     */
+    die: function(message) {
+        console.error("FAILED: " + message);
+        process.exit(1);
+    },
 }
 
 module.exports = utils;
