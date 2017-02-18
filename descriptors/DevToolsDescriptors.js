@@ -13,7 +13,7 @@ var DevToolsDescriptors = {
    * @param {!SVGSpriteSheet} spriteSheet
    * @return {string}
    */
-  generateJS: function(spriteSheet) {
+  generate: function(spriteSheet) {
     // Manually craft json which alines with our style.
     var json = 'UI.Icon.setSpriteSheet({';
     json += `\n  size: '${spriteSheet.width()}px ${spriteSheet.height()}px',`;
