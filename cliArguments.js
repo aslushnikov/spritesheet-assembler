@@ -3,6 +3,13 @@ var path = require('path');
 var die = require('./utils').die;
 
 class CLIArguments {
+    /**
+     * @param {string} inputFolderPath
+     * @param {string} outputImagePath
+     * @param {string} outputDescriptorPath
+     * @param {string} descriptorType
+     * @param {number} padding
+     */
     constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, padding) {
         this.inputFolderPath = inputFolderPath;
         this.outputImagePath = outputImagePath;
