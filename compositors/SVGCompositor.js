@@ -4,7 +4,7 @@ var renameId = require('postsvg-rename-id');
 
 class SVGCompositor {
   /**
-   * @param {!SVGSpriteSheet} spriteSheet
+   * @param {!SpriteSheet} spriteSheet
    * @return {string}
    */
   static compose(spriteSheet) {
