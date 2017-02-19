@@ -3,6 +3,7 @@ var path = require('path');
 var mime = require('mime');
 var utils = require('./utils');
 var Packer = require('./lib/Packer');
+var CLIArguments = require('./CLIArguments');
 var compositors = require('./compositors');
 var descriptors = require('./descriptors');
 
@@ -14,7 +15,7 @@ function markEnd(label) {
   console.log('==> ' + label + ': ' + (Date.now() - timestamp) + 'ms');
 }
 
-var cliArguments = require('./cliArguments');
+var cliArguments = CLIArguments.parse(process.argv.slice(2));
 var outputMimeType = mime.lookup(cliArguments.outputImagePath);
 var compositor = compositors[outputMimeType];
 if (!compositor)
