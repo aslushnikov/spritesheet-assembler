@@ -4,11 +4,12 @@ Arguments:
   -i, --input-folder        path to the input folder with sprites to assemble
   -o, --output-image        path to the output folder
   -d, --output-descriptor   path to the output descriptor file
-  -t, --descriptor-type     type of descriptors to generate. Currently supported
+  -t, --descriptor-type     type of descriptor to generate. Currently supported
                             values are:
-                                1. devtools - generate devtools descriptors
+                                1. css - generate css descriptor
+                                2. devtools - generate devtools descriptor
   -p, --padding             padding between sprites
 
 Examples:
-    spass -i icons/ -o spritesheet.svg -d spritesheet.js -t devtools
+    spass -i icons/ -o spritesheet.svg -d spritesheet.js -t css
 
