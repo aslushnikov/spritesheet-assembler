@@ -1,0 +1,28 @@
+html {
+    font-family: arial;
+    margin: 2em;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
