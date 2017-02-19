@@ -84,7 +84,7 @@ function reportResults(reports) {
     for (var report of reports)
         console.log(report.textTitle());
     console.log('================');
-    console.log('PASSED: '.green + ok.length + '  FAILED: '.red + failed.length);
+    console.log('PASSED: '.green + ok.length + '/' + reports.length);
     for (var fail of failed)
         console.log(fail.toText());
     if (!failed.length)
