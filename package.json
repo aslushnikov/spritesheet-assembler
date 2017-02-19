@@ -12,6 +12,7 @@
   "author": "The Chromium Authors",
   "license": "SEE LICENSE IN https://chromium.googlesource.com/chromium/src/+/master/LICENSE",
   "devDependencies": {
+    "colors": "^1.1.2",
     "rimraf": "^2.6.0"
   },
   "dependencies": {

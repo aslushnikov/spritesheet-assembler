@@ -2,6 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var rmsync = require('rimraf').sync;
 var execFile = require('child_process').execFile;
+var colors = require('colors');
 
 var testFolderRegex = /^\d\d-.*/;
 var tests = fs.readdirSync(__dirname)
@@ -66,7 +67,9 @@ function reportResults(reports) {
         console.log(report.toText());
     }
     if (!allOk)
-        console.log("FAILED. See actual results at ./tests/actual-results");
+        console.log('FAILED'.red + '. See actual results at ./tests/actual-results');
+    else
+        console.log('All tests passed.'.green);
 }
 
 class Report {
@@ -109,8 +112,8 @@ class Report {
 
     toText() {
         if (this.isOk())
-            return this.testName + '    SUCCESS';
-        var text = this.testName + '    FAIL\n';
+            return this.testName + '    SUCCESS'.green;
+        var text = this.testName + '    FAIL\n'.red;
         var lines = [];
         for (var missing of this.missingFiles)
             lines.push('    - Failed to generate: ' + missing);
