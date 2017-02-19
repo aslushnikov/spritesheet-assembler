@@ -1,6 +1,6 @@
 .icon {
-  background-image: url('../images/spritesheet.png');
-  background-size: 50px 50px;
+  background-image: url('../images/spritesheet.svg');
+  background-size: 40px 40px;
 }
 .icon-sprite1 {
   background-position: -0px -0px;
@@ -8,17 +8,17 @@
   height: 20px;
 }
 .icon-sprite2 {
-  background-position: -25px -0px;
+  background-position: -20px -0px;
   width: 20px;
   height: 20px;
 }
 .icon-sprite3 {
-  background-position: -0px -25px;
+  background-position: -0px -20px;
   width: 20px;
   height: 20px;
 }
 .icon-sprite4 {
-  background-position: -25px -25px;
+  background-position: -20px -20px;
   width: 20px;
   height: 20px;
 }

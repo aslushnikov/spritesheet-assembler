@@ -7,8 +7,8 @@ module.exports = function(outputFolder) {
     return [
         '-i', __dirname,
         '-o', path.join(outputFolder, 'spritesheet.UNKNOWN'),
-        '-d', path.join(outputFolder, 'descriptors.js'),
+        '-d', path.join(outputFolder, 'icons.css'),
         '-p', 2,
-        '-t', 'devtools'
+        '-t', 'css'
     ];
 };
