@@ -25,8 +25,12 @@ spass -i icons/ -o images/spritesheet.png -d styles/icons.css -t css
 
 ## Algorithm
 
-TBD
 [Web Demo](https://aslushnikov.github.io/spritesheet-assembler/demos/algorithm/)
+
+TBD
+
+*Huge* inspiration from [Jake's great article](http://codeincomplete.com/posts/bin-packing/) and his bin packing demo.
+
 
 ## Architecture Overview
 
