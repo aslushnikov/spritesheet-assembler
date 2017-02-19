@@ -7,7 +7,7 @@
  */
 
 UI.Icon.setSpriteSheet({
-  size: '50px 50px',
+  size: '45px 45px',
   descriptors: {
     'sprite1': {x: 0, y: 0, width: 20, height: 20},
     'sprite2': {x: -25, y: 0, width: 20, height: 20},
