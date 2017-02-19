@@ -6,9 +6,11 @@ var renameId = require('postsvg-rename-id');
 class SVGCompositor {
   /**
    * @param {!SpriteSheet} spriteSheet
-   * @return {string}
+   * @param {string} mimeType
+   * @return {!Promise<!Buffer>}
    */
-  static compose(spriteSheet) {
+  static compose(spriteSheet, mimeType) {
+    console.assert(mimeType === 'image/svg+xml', 'Cannot compose non-svg mime type: ' + mimeType);
     var svgBody = '';
     var spriteId = 0;
     for (var sprite of spriteSheet.sprites()) {
@@ -38,7 +40,8 @@ class SVGCompositor {
 
     var xmlHeader = '<?xml version="1.0" encoding="utf-8"?>';
     var spriteSheetHeader = `<svg width="${spriteSheet.width()}" height="${spriteSheet.height()}" xmlns="http://www.w3.org/2000/svg">`;
-    return xmlHeader + spriteSheetHeader + svgBody + '</svg>';
+    var result = xmlHeader + spriteSheetHeader + svgBody + '</svg>';
+    return Promise.resolve(Buffer.from(result, 'utf8'));
   }
 }
 
