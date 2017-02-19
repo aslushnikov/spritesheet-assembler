@@ -23,7 +23,7 @@ class CLIArguments {
         var outputImagePath;
         var outputDescriptorPath;
         var descriptorType;
-        var padding = 0; // Default padding is 0.
+        var padding;
         for (var i = 0; i < args.length; i += 2) {
             var key = args[i].toLowerCase();
             var value = args[i + 1];
@@ -51,7 +51,7 @@ class CLIArguments {
                     die('duplicate argument --descriptor-type');
                 descriptorType = value.toLowerCase();
             } else if (key === '-p' || key === '--padding') {
-                if (padding !== null)
+                if (padding !== undefined)
                     die('duplicate argument --padding');
                 if (!/^[1-9]\d*$/.test(value))
                     die('failed to parse number from --padding argument - ' + value);
@@ -69,6 +69,10 @@ class CLIArguments {
             die("Required argument --output-descriptor is missing");
         if (!descriptorType)
             die("Required argument --descriptor-type is missing");
+
+        // Assign default options.
+        if (!padding)
+            padding = 0;
         // Validate options.
         if (!fs.existsSync(inputFolderPath))
             die("Input folder does not exist " + inputFolderPath);
