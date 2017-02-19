@@ -38,8 +38,10 @@ function runNextTest() {
 }
 
 function resetTestResults() {
-    if (!tests.length)
+    if (!tests.length) {
+        console.log("All test results are regenerated.");
         return;
+    }
     var testName = tests.shift();
     var outputFolder = path.join(__dirname, testName, 'expected');
     rmsync(outputFolder);
