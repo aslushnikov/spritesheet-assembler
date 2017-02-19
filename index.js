@@ -56,7 +56,7 @@ markEnd(
 
 // 3. Compose image and write descriptors.
 markStart();
-var resultDescriptor = descriptor.generate(spriteSheet);
+var resultDescriptor = descriptor.generate(spriteSheet, cliArguments.outputImagePath);
 fs.writeFileSync(cliArguments.outputDescriptorPath, resultDescriptor);
 
 compositor.compose(spriteSheet, outputMimeType)

@@ -3,12 +3,14 @@ var path = require('path');
 var CSSDescriptor = {
   /**
    * @param {!SpriteSheet} spriteSheet
+   * @param {string} imageOutputPath
    * @return {string}
    */
-  generate: function(spriteSheet) {
+  generate: function(spriteSheet, imageOutputPath) {
+    var spriteSheetName = path.basename(imageOutputPath);
     var css = [
         '.icon {',
-        "  background-image: url('../images/sprite.png');",
+        `  background-image: url('../images/${spriteSheetName}');`,
         `  background-size: ${spriteSheet.width()}px ${spriteSheet.height()}px;`,
         '}',
     ];
