@@ -12,15 +12,21 @@ npm install -g spritesheet-assembler
 spass -i icons/ -o images/spritesheet.png -d styles/icons.css -t css
 ```
 
-## Supported formats
+## Supported spritesheet formats
 
 - SVG
 - PNG
 - JPG
 
+## Supported spritesheet descriptors
+
+- CSS - [demo](https://aslushnikov.github.io/spritesheet-assembler/demos/css-spritesheet/)
+- DevTools (specific format of devtools icons)
+
 ## Algorithm
 
 TBD
+[Web Demo](https://aslushnikov.github.io/spritesheet-assembler/demos/algorithm/)
 
 ## Architecture Overview
 
