@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 19 10 10" width="10" height="10">
+    <g>
+        <path style="fill:#bababa" d="m 46.500338,25 c 0,0.55 0.45,1 1,1 0.55,0 1,-0.45 1,-1 0,-0.55 -0.45,-1 -1,-1 -0.55,0 -1,0.45 -1,1"/>
+        <path style="fill:none;stroke:#bababa;stroke-width:1.5" d="m 45.750338,21.75 -3.5,3.25 3.5,3.25"/>
+    </g>
+</svg>

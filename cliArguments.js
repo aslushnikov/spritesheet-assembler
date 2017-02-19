@@ -24,24 +24,28 @@ class CLIArguments {
         var outputDescriptorPath;
         var descriptorType;
         var padding = 0; // Default padding is 0.
-        for (var i = 2; i < process.argv.length; i += 2) {
-            var key = process.argv[i].toLowerCase();
-            var value = process.argv[i + 1];
+        for (var i = 0; i < args.length; i += 2) {
+            var key = args[i].toLowerCase();
+            var value = args[i + 1];
             if (key === '-h' || key === '--help') {
                 console.log(fs.readFileSync(path.join(__dirname, 'usage.txt'), 'utf-8'));
                 process.exit(0);
             } else if (key === '-i' || key === '--input-folder') {
                 if (inputFolderPath)
                     die('duplicate argument --input-folder');
-                inputFolderPath = path.join(process.cwd(), value);
+                inputFolderPath = resolvePath(value);
             } else if (key === '-o' || key === '--output-image') {
                 if (outputImagePath)
                     die('duplicate argument --output-imaage');
-                outputImagePath = path.join(process.cwd(), value);
+                var dirName = path.dirname(value);
+                var fileName = path.basename(value);
+                outputImagePath = path.join(resolvePath(dirName), fileName);
             } else if (key === '-d' || key === '--output-descriptor') {
                 if (outputDescriptorPath)
                     die('duplicate argument --output-descriptor');
-                outputDescriptorPath = path.join(process.cwd(), value);
+                var dirName = path.dirname(value);
+                var fileName = path.basename(value);
+                outputDescriptorPath = path.join(resolvePath(dirName), fileName);
             } else if (key === '-t' || key === '--descriptor-type') {
                 if (descriptorType)
                     die('duplicate argument --descriptor-type');
@@ -74,6 +78,13 @@ class CLIArguments {
             die("Folder for output descriptor does not exist " + outputDescriptorPath);
         return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, padding);
     }
+}
+
+function resolvePath(p) {
+    if (fs.existsSync(p))
+        return p;
+    p = path.join(process.cwd(), p);
+    return p;
 }
 
 module.exports = CLIArguments;

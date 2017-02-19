@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 127 11 11" width="11" height="11">
+    <g>
+        <g>
+            <g style="fill:none;stroke:none">
+                <g style="fill:#000">
+                    <path d="m 8,13 c 2.761424,0 5,-2.238576 5,-5 C 13,5.2385763 10.761424,3 8,3 5.2385763,3 3,5.2385763 3,8 c 0,2.761424 2.2385763,5 5,5 z M 8,11 8,9 5,9 5,7 8,7 8,5 11,8 8,11 z" transform="matrix(1.1,0,0,1.1,10,127) translate(-3,-3)"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
