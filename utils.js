@@ -39,6 +39,10 @@ var utils = {
         console.error("FAILED: " + message);
         process.exit(1);
     },
+
+    showUsage: function() {
+        console.log(fs.readFileSync(path.join(__dirname, 'usage.txt'), 'utf-8'));
+    },
 }
 
 module.exports = utils;

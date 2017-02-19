@@ -1,4 +1,4 @@
-Usage: spritesheet-assembler [arguments]
+Usage: spass [arguments]
 
 Arguments:
   -i, --input-folder        path to the input folder with sprites to assemble
@@ -10,5 +10,5 @@ Arguments:
   -p, --padding             padding between sprites
 
 Examples:
-    spritesheet-assembler -i icons/ -o spritesheet.svg -d spritesheet.js -t devtools
+    spass -i icons/ -o spritesheet.svg -d spritesheet.js -t devtools
 

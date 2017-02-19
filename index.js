@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
@@ -15,14 +17,30 @@ function markEnd(label) {
   console.log('==> ' + label + ': ' + (Date.now() - timestamp) + 'ms');
 }
 
-var cliArguments = CLIArguments.parse(process.argv.slice(2));
+if (process.argv.length <= 2) {
+    utils.showUsage();
+    return;
+}
+
+if (process.argv.length === 3 && (process.argv[2].toLowerCase() === "-h" || process.argv[2].toLowerCase() === "--help")) {
+    utils.showUsage();
+    return;
+}
+
+var cliArguments;
+try {
+    cliArguments = CLIArguments.parse(process.argv.slice(2));
+} catch (e) {
+    utils.die(e.message);
+    return;
+}
 var outputMimeType = mime.lookup(cliArguments.outputImagePath);
 var compositor = compositors[outputMimeType];
 if (!compositor)
-    die('Cannot generate output image with mime type ' + outputMimeType);
+    utils.die('Cannot generate output image with mime type ' + outputMimeType);
 var descriptor = descriptors[cliArguments.descriptorType];
 if (!descriptor)
-    die('Cannot find descriptor generator of type ' + cliArguments.descriptorType);
+    utils.die('Cannot find descriptor generator of type ' + cliArguments.descriptorType);
 
 // 1. Read all the svg files from given directory.
 markStart();

@@ -1,6 +1,5 @@
 var fs = require('fs');
 var path = require('path');
-var die = require('./utils').die;
 
 class CLIArguments {
     /**
@@ -27,10 +26,7 @@ class CLIArguments {
         for (var i = 0; i < args.length; i += 2) {
             var key = args[i].toLowerCase();
             var value = args[i + 1];
-            if (key === '-h' || key === '--help') {
-                console.log(fs.readFileSync(path.join(__dirname, 'usage.txt'), 'utf-8'));
-                process.exit(0);
-            } else if (key === '-i' || key === '--input-folder') {
+            if (key === '-i' || key === '--input-folder') {
                 if (inputFolderPath)
                     die('duplicate argument --input-folder');
                 inputFolderPath = resolvePath(value);
@@ -89,6 +85,10 @@ function resolvePath(p) {
         return p;
     p = path.join(process.cwd(), p);
     return p;
+}
+
+function die(message) {
+    throw new Error(message);
 }
 
 module.exports = CLIArguments;
