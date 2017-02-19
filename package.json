@@ -1,13 +1,17 @@
 {
   "name": "spritesheet-assembler",
   "version": "0.0.1",
-  "description": "Spritesheet assembler with support for SVG",
+  "description": "Spritesheet assembler with support for SVG spritesheets",
   "main": "index.js",
   "scripts": {
     "test": "node tests/test.js"
   },
   "keywords": [
-    "spritesheet"
+    "spritesheet",
+    "sprite",
+    "svg",
+    "jpg",
+    "png"
   ],
   "author": "The Chromium Authors",
   "license": "SEE LICENSE IN https://chromium.googlesource.com/chromium/src/+/master/LICENSE",
