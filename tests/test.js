@@ -3,19 +3,31 @@ var fs = require('fs');
 var rmsync = require('rimraf').sync;
 var execFile = require('child_process').execFile;
 var colors = require('colors');
+var die = require('../utils').die;
 
+
+var args = process.argv.slice(2);
+var resetResults = args.indexOf('--reset-results');
+if (resetResults !== -1)
+    args.splice(resetResults, 1);
+if (args.length > 1)
+    die('Unknown arguments: ' + args.slice(1).join(' '));
+var testFilter = args.length === 1 ? args[0] : '';
+
+if (testFilter)
+    console.log('ATTENTION:'.yellow + ' Running tests whose name include "' + testFilter + '"');
 var testFolderRegex = /^\d\d-.*/;
 var tests = fs.readdirSync(__dirname)
-    .filter(fileName => testFolderRegex.test(fileName));
+    .filter(fileName => testFolderRegex.test(fileName))
+    .filter(fileName => fileName.includes(testFilter));
 var reports = [];
 
-var isResettingResults = process.argv.indexOf('--reset-results') !== -1;
-var testResultsFolder = path.join(__dirname, 'actual-results');
-rmsync(testResultsFolder);
-
+var isResettingResults = resetResults !== -1;
 if (isResettingResults) {
     resetTestResults();
 } else {
+    var testResultsFolder = path.join(__dirname, 'actual-results');
+    rmsync(testResultsFolder);
     fs.mkdirSync(testResultsFolder);
     runNextTest();
 }
@@ -30,9 +42,9 @@ function runNextTest() {
     fs.mkdirSync(outputFolder);
     runTest(testName, outputFolder, onTestComplete);
 
-    function onTestComplete() {
+    function onTestComplete(testError) {
         var expectedOutput = path.join(__dirname, testName, 'expected');
-        var report = new Report(testName, expectedOutput, outputFolder);
+        var report = new Report(testName, expectedOutput, outputFolder, testError);
         reports.push(report);
         runNextTest();
     }
@@ -40,7 +52,7 @@ function runNextTest() {
 
 function resetTestResults() {
     if (!tests.length) {
-        console.log("All test results are regenerated.");
+        console.log("Test results are regenerated.");
         return;
     }
     var testName = tests.shift();
@@ -51,7 +63,13 @@ function resetTestResults() {
 }
 
 function runTest(testName, outputFolder, callback) {
-    var args = require(path.join(__dirname, testName, 'arguments.js'))(outputFolder);
+    var argumentsFile = path.join(__dirname, testName, 'arguments.js');
+    if (!fs.existsSync(argumentsFile)) {
+        callback('test is missing arguments.js file');
+        return;
+    }
+
+    var args = require(argumentsFile)(outputFolder);
     args.unshift(path.join(__dirname, '..', 'index.js'));
     execFile('node', args, (error, stdout, stderr) => {
         if (stderr)
@@ -61,27 +79,31 @@ function runTest(testName, outputFolder, callback) {
 }
 
 function reportResults(reports) {
-    var allOk = true;
-    for (var report of reports) {
-        allOk = allOk && report.isOk();
-        console.log(report.toText());
-    }
-    if (!allOk)
-        console.log('FAILED'.red + '. See actual results at ./tests/actual-results');
-    else
+    var failed = reports.filter(report => !report.isOk());
+    var ok = reports.filter(report => report.isOk());
+    for (var report of reports)
+        console.log(report.textTitle());
+    console.log('================');
+    console.log('PASSED: '.green + ok.length + '  FAILED: '.red + failed.length);
+    for (var fail of failed)
+        console.log(fail.toText());
+    if (!failed.length)
         console.log('All tests passed.'.green);
 }
 
 class Report {
-    constructor(testName, expectedFolder, actualFolder) {
+    constructor(testName, expectedFolder, actualFolder, testError) {
         this.testName = testName;
         this.expectedFolder = expectedFolder;
         this.actualFolder = actualFolder;
         this.missingFiles = [];
         this.unexpectedFiles = [];
         this.mismatchFiles = [];
+        this.badTestError = testError;
 
-        var expectedFiles = new Set(fs.readdirSync(expectedFolder));
+        var expectedFiles = new Set();
+        if (fs.existsSync(expectedFolder))
+            expectedFiles = new Set(fs.readdirSync(expectedFolder));
         var actualFiles = new Set(fs.readdirSync(actualFolder));
         for (var actualFile of actualFiles) {
             if (!expectedFiles.has(actualFile))
@@ -107,20 +129,31 @@ class Report {
      * @return {boolean}
      */
     isOk() {
-        return !this.missingFiles.length && !this.unexpectedFiles.length && !this.mismatchFiles.length;
+        return !this.badTestError && !this.missingFiles.length && !this.unexpectedFiles.length && !this.mismatchFiles.length;
+    }
+
+    textTitle() {
+        if (this.isOk())
+            return 'success '.green + this.testName;
+        if (this.badTestError)
+            return 'invalid '.red + this.testName;
+        return '   fail '.red + this.testName;
     }
 
     toText() {
+        var padding = '            ';
+        var text = this.textTitle();
         if (this.isOk())
-            return this.testName + '    SUCCESS'.green;
-        var text = this.testName + '    FAIL\n'.red;
-        var lines = [];
+            return text;
+        if (this.badTestError)
+            return text + '\n' + padding + '- ' + this.badTestError;
+        var lines = [text];
         for (var missing of this.missingFiles)
-            lines.push('    - Failed to generate: ' + missing);
+            lines.push(padding + '- Failed to generate: ' + missing);
         for (var unexpected of this.unexpectedFiles)
-            lines.push('    - Unexpectedly generated: ' + unexpected);
+            lines.push(padding + '- Unexpectedly generated: ' + unexpected);
         for (var mismatch of this.mismatchFiles)
-            lines.push('    - Mismatch content: ' + mismatch);
-        return text + lines.join('\n');
+            lines.push(padding + '- Mismatch content: ' + mismatch);
+        return lines.join('\n');
     }
 }
