@@ -12,10 +12,11 @@ class GMCompositor {
     var width = spriteSheet.width();
     var height = spriteSheet.height();
     var command = gm(width, height, 'transparent');
+    command._in = ['-background', 'transparent'];
     for (var sprite of spriteSheet.sprites()) {
         var position = spriteSheet.spritePosition(sprite);
         command.out('-page');
-        command.out(`+${position.x}+${position.y}`);
+        command.out(`${width}x${height}+${position.x}+${position.y}`);
         command.out(sprite.filePath);
     }
     command = command.mosaic();

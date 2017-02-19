@@ -71,5 +71,5 @@ function onSuccess(buffer) {
 }
 
 function onFailure(err) {
-    die(err);
+    utils.die(err);
 }
