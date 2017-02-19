@@ -1,0 +1,69 @@
+html {
+    font-family: arial;
+}
+
+.main {
+    display: flex;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.options output {
+    min-width: 3em;
+}
+
+.preset {
+}
+
+textarea {
+    height: 261px;
+    width: 100%;
+}
+
+.textarea-legend {
+    margin-top: 1em;
+}
+
+.textarea-legend i {
+    color: grey;
+}
+
+.result {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.spritesheet {
+    transform-origin: top left;
+}
+
+.stats-coverage {
+    padding-top: 1em;
+}
+
+svg {
+    position: absolute;
+    border: 1px solid grey;
+}
+
+rect {
+    transform-origin: center;
+}
+
+rect:hover {
+    opacity: 0.5;
+}
+
+input[type=range] {
+    width: 100px;
+}
+

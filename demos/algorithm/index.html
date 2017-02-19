@@ -1,0 +1,41 @@
+<script src="nodemock.js"></script>
+<script src="../../lib/Sprite.js"></script>
+<script src="../../lib/SpriteSheet.js"></script>
+<script src="../../lib/Packer.js"></script>
+<script src="app.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<div class="main">
+    <section class="options">
+        <div class="preset">
+            <span>Tile Set:</span>
+            <select>
+                <option value="simple">simple</option>
+                <option value="square">square</option>
+                <option value="tall">tall</option>
+                <option value="wide">wide</option>
+                <option value="tall-and-wide">tall and wide</option>
+                <option value="powers-of-2">powers of 2</option>
+                <option value="odd-and-even">odd and even</option>
+                <option value="complex">complex</option>
+                <option value="devtools-icons">devtools icons</option>
+            </select>
+        </div>
+        <div>
+            <span>padding:</span>
+            <input id="paddingInput" type="range" min=0 max=20>
+            <output id="paddingValue">24</output>
+        </div>
+        <div class='textarea-legend'>
+            Format: <i>Width</i> x <i>Height</i> x <i>N</i>
+        </div>
+        <textarea type="text"></textarea>
+        <div class="stats-sprites-count">total sprites: ?</div>
+        <div class="stats-coverage">coverage: ?</div>
+        <div class="stats-size">size: ?</div>
+        <div class="stats-time">time: ?</div>
+    </section>
+    <section class="result">
+        <div class="spritesheet"></div>
+    </section>
+</div>
