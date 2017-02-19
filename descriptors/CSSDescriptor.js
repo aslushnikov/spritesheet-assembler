@@ -14,7 +14,15 @@ var CSSDescriptor = {
         `  background-size: ${spriteSheet.width()}px ${spriteSheet.height()}px;`,
         '}',
     ];
-    for (var sprite of spriteSheet.sprites()) {
+    var sprites = spriteSheet.sprites().slice();
+    sprites.sort((a, b) => {
+        if (a.filePath < b.filePath)
+            return -1;
+        if (a.filePath > b.filePath)
+            return 1;
+        return 0;
+    });
+    for (var sprite of sprites) {
       var extension = path.extname(sprite.filePath);
       var spriteName = path.basename(sprite.filePath, extension);
       var position = spriteSheet.spritePosition(sprite);

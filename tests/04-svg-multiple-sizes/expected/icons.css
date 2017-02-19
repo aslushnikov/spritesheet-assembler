@@ -2,19 +2,14 @@
   background-image: url('../images/spritesheet.svg');
   background-size: 69px 81px;
 }
-.icon-sprite7 {
-  background-position: -0px -0px;
-  width: 40px;
-  height: 40px;
+.icon-sprite1 {
+  background-position: -42px -27px;
+  width: 10px;
+  height: 10px;
 }
-.icon-sprite5 {
-  background-position: -42px -0px;
-  width: 25px;
-  height: 25px;
-}
-.icon-sprite6 {
-  background-position: -0px -42px;
-  width: 24px;
+.icon-sprite2 {
+  background-position: -26px -42px;
+  width: 15px;
   height: 15px;
 }
 .icon-sprite3 {
@@ -27,13 +22,18 @@
   width: 20px;
   height: 20px;
 }
-.icon-sprite2 {
-  background-position: -26px -42px;
-  width: 15px;
+.icon-sprite5 {
+  background-position: -42px -0px;
+  width: 25px;
+  height: 25px;
+}
+.icon-sprite6 {
+  background-position: -0px -42px;
+  width: 24px;
   height: 15px;
 }
-.icon-sprite1 {
-  background-position: -42px -27px;
-  width: 10px;
-  height: 10px;
+.icon-sprite7 {
+  background-position: -0px -0px;
+  width: 40px;
+  height: 40px;
 }
