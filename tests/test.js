@@ -87,8 +87,12 @@ function reportResults(reports) {
     console.log('PASSED: '.green + ok.length + '/' + reports.length);
     for (var fail of failed)
         console.log(fail.toText());
-    if (!failed.length)
+    if (!failed.length) {
         console.log('All tests passed.'.green);
+        process.exit(0);
+    } else {
+        process.exit(1);
+    }
 }
 
 class Report {
