@@ -12,6 +12,8 @@ class GMCompositor {
     var command = gm(width, height, 'transparent');
     command._in = ['-background', 'transparent'];
     for (var sprite of spriteSheet.sprites()) {
+        if (sprite.mimeType !== 'image/jpeg' && sprite.mimeType !== 'image/png')
+            return Promise.reject('GMCompositor cannot process sprites with mimeType ' + sprite.mimeType + ': ' + path.basename(sprite.filePath));
         var position = spriteSheet.spritePosition(sprite);
         command.out('-page');
         command.out(`${width}x${height}+${position.x}+${position.y}`);

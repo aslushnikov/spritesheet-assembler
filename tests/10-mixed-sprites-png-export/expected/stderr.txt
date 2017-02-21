@@ -1,0 +1,1 @@
+FAILED: GMCompositor cannot process sprites with mimeType image/svg+xml: sprite1.svg
