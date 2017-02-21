@@ -1,7 +1,7 @@
 var path = require('path');
 
 /**
- * Verify that CSS descriptor is generated properly.
+ * Verify that devtools descriptor is generated properly.
  */
 module.exports = function(outputFolder) {
     return [

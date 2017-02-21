@@ -1,5 +1,8 @@
 var path = require('path');
 
+/**
+ * Verify that padding between sprites works as intended.
+ */
 module.exports = function(outputFolder) {
     return [
         '-i', __dirname,

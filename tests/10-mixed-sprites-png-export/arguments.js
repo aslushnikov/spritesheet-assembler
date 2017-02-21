@@ -1,7 +1,8 @@
 var path = require('path');
 
 /**
- * Verify that JPEG spritesheet is property generated.
+ * Verify that a mix of raster and vector sprites is not converted
+ * to PNG spritesheet.
  */
 module.exports = function(outputFolder) {
     return [

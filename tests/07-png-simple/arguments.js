@@ -1,5 +1,8 @@
 var path = require('path');
 
+/**
+ * Verify that GM compositor is sane when composing PNG.
+ */
 module.exports = function(outputFolder) {
     return [
         '-i', __dirname,

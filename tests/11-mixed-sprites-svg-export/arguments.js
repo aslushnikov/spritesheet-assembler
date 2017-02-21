@@ -1,7 +1,8 @@
 var path = require('path');
 
 /**
- * Verify that SVGComposer fails when given non-svg sprites.
+ * Verify that a mix of raster and vector sprites is not converted
+ * to SVG spritesheet.
  */
 module.exports = function(outputFolder) {
     return [

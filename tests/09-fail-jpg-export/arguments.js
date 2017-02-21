@@ -1,7 +1,7 @@
 var path = require('path');
 
 /**
- * Verify that JPEG spritesheet is property generated.
+ * Verify that JPEG spritesheet is not generated.
  */
 module.exports = function(outputFolder) {
     return [
