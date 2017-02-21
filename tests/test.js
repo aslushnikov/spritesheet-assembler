@@ -156,14 +156,19 @@ class Report {
             lines.push(padding + '- Failed to generate: ' + missing);
         for (var unexpected of this.unexpectedFiles) {
             lines.push(padding + '- Unexpectedly generated: ' + unexpected);
-            if (unexpected === 'stderr.txt') {
-                var content = fs.readFileSync(path.join(this.actualFolder, unexpected), 'utf8');
-                content = content.split('\n').map(line => padding + '    ' + line).join('\n');
-                lines.push(content);
-            }
+            if (unexpected === 'stderr.txt')
+                lines.push(stdErrContent.call(this));
         }
-        for (var mismatch of this.mismatchFiles)
+        for (var mismatch of this.mismatchFiles) {
             lines.push(padding + '- Mismatch content: ' + mismatch);
+            if (mismatch === 'stderr.txt')
+                lines.push(stdErrContent.call(this));
+        }
         return lines.join('\n');
+
+        function stdErrContent() {
+            var content = fs.readFileSync(path.join(this.actualFolder, 'stderr.txt'), 'utf8');
+            return content.split('\n').map(line => padding + '    ' + line).join('\n');
+        }
     }
 }

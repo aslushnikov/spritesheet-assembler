@@ -14,7 +14,7 @@ class SVGCompositor {
     for (var sprite of spriteSheet.sprites()) {
       if (sprite.mimeType !== 'image/svg+xml') {
         var error = 'Cannot compose non-svg sprite ' + path.basename(sprite.filePath) + '  of type ' + sprite.mimeType;
-        throw new Error(error);
+        return Promise.reject(error);
       }
       var spriteSVG = fs.readFileSync(sprite.filePath, 'utf-8').trim();
 
