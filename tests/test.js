@@ -72,8 +72,10 @@ function runTest(testName, outputFolder, callback) {
     var args = require(argumentsFile)(outputFolder);
     args.unshift(path.join(__dirname, '..', 'index.js'));
     execFile('node', args, (error, stdout, stderr) => {
-        if (stderr)
+        if (stderr) {
             fs.writeFileSync(path.join(outputFolder, 'stderr.txt'), stderr);
+            console.error(stderr);
+        }
         callback();
     });
 }
