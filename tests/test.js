@@ -7,7 +7,7 @@ var die = require('../utils').die;
 
 
 var args = process.argv.slice(2);
-var resetResults = args.indexOf('--reset-results');
+var resetResults = args.indexOf('reset-results');
 if (resetResults !== -1)
     args.splice(resetResults, 1);
 if (args.length > 1)
