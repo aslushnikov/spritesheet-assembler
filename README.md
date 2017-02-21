@@ -58,6 +58,7 @@ To reset test results for all svg tests: (or generate results for a newly added 
 npm test -- svg reset-results
 ```
 To add a test:
+
 1. create a new folder under `tests/` folder which starts with
 two-digit number, e.g. `tests/01-some-new-test/`.
 2. add `arguments.js` file which should define input arguments for the utility: [example](https://github.com/aslushnikov/spritesheet-assembler/blob/master/tests/01-svg-simple/arguments.js)
