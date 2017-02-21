@@ -6,11 +6,9 @@ var renameId = require('postsvg-rename-id');
 class SVGCompositor {
   /**
    * @param {!SpriteSheet} spriteSheet
-   * @param {string} mimeType
    * @return {!Promise<!Buffer>}
    */
-  static compose(spriteSheet, mimeType) {
-    console.assert(mimeType === 'image/svg+xml', 'Cannot compose non-svg mime type: ' + mimeType);
+  static compose(spriteSheet) {
     var svgBody = '';
     var spriteId = 0;
     for (var sprite of spriteSheet.sprites()) {

@@ -1,14 +1,12 @@
 var path = require('path');
 var gm = require('gm');
-var mime = require('mime');
 
 class GMCompositor {
   /**
    * @param {!SpriteSheet} spriteSheet
-   * @param {string} mimeType
    * @return {!Promise<!Buffer>}
    */
-  static compose(spriteSheet, mimeType) {
+  static compose(spriteSheet) {
     var width = spriteSheet.width();
     var height = spriteSheet.height();
     var command = gm(width, height, 'transparent');
@@ -20,11 +18,10 @@ class GMCompositor {
         command.out(sprite.filePath);
     }
     command = command.mosaic();
-    var extension = mime.extension(mimeType);
 
     var fulfill, reject;
     var promise = new Promise((f, r) => { fulfill = f; reject = r; });
-    command.toBuffer(extension, onResult);
+    command.toBuffer('png', onResult);
     return promise;
 
     function onResult(err, buffer) {

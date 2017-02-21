@@ -72,10 +72,8 @@ function runTest(testName, outputFolder, callback) {
     var args = require(argumentsFile)(outputFolder);
     args.unshift(path.join(__dirname, '..', 'index.js'));
     execFile('node', args, (error, stdout, stderr) => {
-        if (stderr) {
+        if (stderr)
             fs.writeFileSync(path.join(outputFolder, 'stderr.txt'), stderr);
-            console.error(stderr);
-        }
         callback();
     });
 }
@@ -156,8 +154,14 @@ class Report {
         var lines = [text];
         for (var missing of this.missingFiles)
             lines.push(padding + '- Failed to generate: ' + missing);
-        for (var unexpected of this.unexpectedFiles)
+        for (var unexpected of this.unexpectedFiles) {
             lines.push(padding + '- Unexpectedly generated: ' + unexpected);
+            if (unexpected === 'stderr.txt') {
+                var content = fs.readFileSync(path.join(this.actualFolder, unexpected), 'utf8');
+                content = content.split('\n').map(line => padding + '    ' + line).join('\n');
+                lines.push(content);
+            }
+        }
         for (var mismatch of this.mismatchFiles)
             lines.push(padding + '- Mismatch content: ' + mismatch);
         return lines.join('\n');

@@ -59,7 +59,7 @@ markStart();
 var resultDescriptor = descriptor.generate(spriteSheet, cliArguments.outputImagePath);
 fs.writeFileSync(cliArguments.outputDescriptorPath, resultDescriptor);
 
-compositor.compose(spriteSheet, outputMimeType)
+compositor.compose(spriteSheet)
           .then(onSuccess)
           .catch(onFailure);
 
