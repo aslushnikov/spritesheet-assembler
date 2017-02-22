@@ -1,6 +1,6 @@
 {
   "name": "spritesheet-assembler",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Spritesheet assembler with support for SVG spritesheets",
   "main": "index.js",
   "scripts": {
