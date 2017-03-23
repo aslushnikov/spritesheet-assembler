@@ -8,7 +8,10 @@ Arguments:
                             values are:
                                 1. css - generate css descriptor
                                 2. devtools - generate devtools descriptor
-  -p, --padding             padding between sprites
+  -p, --padding             padding between sprites. Sets both --padding-right
+                            and --padding-bottom to the same value
+  --padding-right           horizontal padding between sprites
+  --padding-bottom          vertical padding between sprites
 
 Examples:
     spass -i icons/ -o spritesheet.svg -d spritesheet.js -t css

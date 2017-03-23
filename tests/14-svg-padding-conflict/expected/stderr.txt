@@ -1,1 +1,1 @@
-FAILED: cannot set padding argument when either padding-left or padding-right is given
+FAILED: cannot set --padding argument when either --padding-bottom or --padding-right is given
