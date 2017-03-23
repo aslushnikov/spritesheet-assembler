@@ -10,11 +10,12 @@ Arguments:
                                 2. devtools - generate devtools descriptor
   -p, --padding             padding between sprites. Sets both --padding-right
                             and --padding-bottom to the same value
-  --padding-right           horizontal padding between sprites
-  --padding-bottom          vertical padding between sprites
+  --padding-right           set horizontal padding between sprites
+  --padding-bottom          set vertical padding between sprites
+  --grid-cell NxM           use grid layout with each cell of size NxM
   -v, --version             show program version
   -h, --help                show help message
 
 Examples:
-    spass -i icons/ -o spritesheet.svg -d spritesheet.js -t css
-
+    spass -i icons/ -o spritesheet.svg -d spritesheet.css -t css
+    spass -i icons/ -o spritesheet.svg -d spritesheet.css -t css --grid-cell 20x20

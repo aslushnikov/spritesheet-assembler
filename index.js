@@ -54,7 +54,7 @@ markEnd('Loaded ' + sprites.length + ' files');
 
 // 2. Build optimal spritesheet.
 markStart();
-var spriteSheet = Packer.packEfficiently(sprites, cliArguments.paddingRight, cliArguments.paddingBottom);
+var spriteSheet = cliArguments.gridCell ? Packer.packInGrid(sprites, cliArguments.paddingRight, cliArguments.paddingBottom, cliArguments.gridCell.width, cliArguments.gridCell.height) : Packer.packEfficiently(sprites, cliArguments.paddingRight, cliArguments.paddingBottom);
 markEnd(
   'Created spritesheet ' + spriteSheet.width() + 'x' + spriteSheet.height() + ' with ' +
   ((spriteSheet.coverage() * 10000 | 0) / 100) + '% coverage');

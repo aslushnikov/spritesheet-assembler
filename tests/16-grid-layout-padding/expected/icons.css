@@ -1,0 +1,24 @@
+.icon {
+  background-image: url('../images/spritesheet.svg');
+  background-size: 67px 67px;
+}
+.icon-sprite1 {
+  background-position: -10px -10px;
+  width: 10px;
+  height: 10px;
+}
+.icon-sprite2 {
+  background-position: -47px -7px;
+  width: 15px;
+  height: 15px;
+}
+.icon-sprite3 {
+  background-position: -5px -45px;
+  width: 20px;
+  height: 20px;
+}
+.icon-sprite4 {
+  background-position: -42px -42px;
+  width: 25px;
+  height: 25px;
+}

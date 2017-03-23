@@ -9,14 +9,16 @@ class CLIArguments {
      * @param {string} descriptorType
      * @param {number} paddingRight
      * @param {number} paddingBottom
+     * @param {?{width: number, height: number}} gridCell
      */
-    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom) {
+    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom, gridCell) {
         this.inputFolderPath = inputFolderPath;
         this.outputImagePath = outputImagePath;
         this.outputDescriptorPath = outputDescriptorPath;
         this.descriptorType = descriptorType;
         this.paddingRight = paddingRight;
         this.paddingBottom = paddingBottom;
+        this.gridCell = gridCell;
     }
 
     static parse(args) {
@@ -26,6 +28,7 @@ class CLIArguments {
         var descriptorType;
         var paddingBottom;
         var paddingRight;
+        var gridCell = null;
         for (var i = 0; i < args.length; i += 2) {
             var key = args[i].toLowerCase();
             var value = args[i + 1];
@@ -54,20 +57,28 @@ class CLIArguments {
                     die('cannot set --padding argument when either --padding-bottom or --padding-right is given');
                 if (!/^[1-9]\d*$/.test(value))
                     die('failed to parse number from --padding argument - ' + value);
-                paddingBottom = parseInt(value);
+                paddingBottom = parseInt(value, 10);
                 paddingRight = paddingBottom;
             } else if (key === '--padding-bottom') {
                 if (paddingBottom !== undefined)
-                    die('duplicate attempt to set padding-left argument');
+                    die('duplicate attempt to set padding-bottom argument');
                 if (!/^[1-9]\d*$/.test(value))
                     die('failed to parse number from --padding-bottom argument - ' + value);
-                paddingBottom = parseInt(value);
+                paddingBottom = parseInt(value, 10);
             } else if (key === '--padding-right') {
                 if (paddingRight !== undefined)
                     die('duplicate attempt to set padding-right argument');
                 if (!/^[1-9]\d*$/.test(value))
                     die('failed to parse number from --padding-right argument - ' + value);
                 paddingRight = parseInt(value);
+            } else if (key === '--grid-cell') {
+                if (gridCell)
+                    die('duplicate attempt to set grid-cell argument');
+                if (!/^[1-9]\d*x[1-9]\d*$/.test(value))
+                    die('failed to parse grid-cell in format N x M from --grid-cell - ' + value);
+                var gridWidth = parseInt(value.split('x')[0], 10);
+                var gridHeight = parseInt(value.split('x')[1], 10);
+                gridCell = {width: gridWidth, height: gridHeight};
             } else {
                 die('unknown argument: ' + key);
             }
@@ -94,7 +105,7 @@ class CLIArguments {
             die("Folder for output image does not exist " + outputImagePath);
         if (!fs.existsSync(path.dirname(outputDescriptorPath)))
             die("Folder for output descriptor does not exist " + outputDescriptorPath);
-        return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom);
+        return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom, gridCell);
     }
 }
 
