@@ -27,6 +27,11 @@ if (process.argv.length === 3 && (process.argv[2].toLowerCase() === "-h" || proc
     return;
 }
 
+if (process.argv.length === 3 && (process.argv[2].toLowerCase() === "-v" || process.argv[2].toLowerCase() === "--version")) {
+    console.log(require('./package.json').version);
+    return;
+}
+
 var cliArguments;
 try {
     cliArguments = CLIArguments.parse(process.argv.slice(2));

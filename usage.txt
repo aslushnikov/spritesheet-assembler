@@ -12,6 +12,8 @@ Arguments:
                             and --padding-bottom to the same value
   --padding-right           horizontal padding between sprites
   --padding-bottom          vertical padding between sprites
+  -v, --version             show program version
+  -h, --help                show help message
 
 Examples:
     spass -i icons/ -o spritesheet.svg -d spritesheet.js -t css
