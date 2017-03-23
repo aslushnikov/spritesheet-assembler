@@ -49,7 +49,7 @@ markEnd('Loaded ' + sprites.length + ' files');
 
 // 2. Build optimal spritesheet.
 markStart();
-var spriteSheet = Packer.packEfficiently(sprites, cliArguments.padding, cliArguments.padding);
+var spriteSheet = Packer.packEfficiently(sprites, cliArguments.paddingLeft, cliArguments.paddingRight);
 markEnd(
   'Created spritesheet ' + spriteSheet.width() + 'x' + spriteSheet.height() + ' with ' +
   ((spriteSheet.coverage() * 10000 | 0) / 100) + '% coverage');

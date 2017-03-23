@@ -91,7 +91,7 @@ function reportResults(reports) {
         console.log('All tests passed.'.green);
         process.exit(0);
     } else {
-        process.exit(1);
+        process.exit(process.env.NODE_ENV === 'TEST' ? 1 : 0);
     }
 }
 
