@@ -1,6 +1,6 @@
 # Spritesheet Assembler [![Build Status](https://travis-ci.org/aslushnikov/spritesheet-assembler.svg?branch=master)](https://travis-ci.org/aslushnikov/spritesheet-assembler)
 - Support for SVG/PNG/JPG sprites
-- Generate CSS descriptors
+- Generate CSS/JSON descriptors
 - Simple: tiny source, minimal dependencies. Please fork/contribute!
 
 ## Install
@@ -14,7 +14,7 @@ npm install -g spritesheet-assembler
 ```
 And run:
 ```bash
-spass -i icons/ -o images/spritesheet.png -d styles/icons.css -t css
+spass -i icons/ -o images/spritesheet.png -d styles/icons.css
 ```
 
 ## Demos

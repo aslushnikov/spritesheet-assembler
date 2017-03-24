@@ -43,9 +43,10 @@ var outputMimeType = mime.lookup(cliArguments.outputImagePath);
 var compositor = compositors[outputMimeType];
 if (!compositor)
     utils.die('Cannot generate output image with mime type ' + outputMimeType);
-var descriptor = descriptors[cliArguments.descriptorType];
+var descriptorMimeType = mime.lookup(cliArguments.outputDescriptorPath);
+var descriptor = descriptors[descriptorMimeType];
 if (!descriptor)
-    utils.die('Cannot find descriptor generator of type ' + cliArguments.descriptorType);
+    utils.die('Cannot find descriptor generator of type ' + descriptorMimeType);
 
 // 1. Read all the svg files from given directory.
 markStart();

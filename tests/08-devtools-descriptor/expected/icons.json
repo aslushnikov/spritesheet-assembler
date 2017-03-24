@@ -1,0 +1,11 @@
+{
+  "name": "spritesheet",
+  "width": 45,
+  "height": 45,
+  "icons": {
+    "sprite1": {"x": 0, "y": 0, "width": 20, "height": 20},
+    "sprite2": {"x": -25, "y": 0, "width": 20, "height": 20},
+    "sprite3": {"x": 0, "y": -25, "width": 20, "height": 20},
+    "sprite4": {"x": -25, "y": -25, "width": 20, "height": 20}
+  }
+}

@@ -10,6 +10,5 @@ module.exports = function(outputFolder) {
         '-d', path.join(outputFolder, 'icons.css'),
         '--padding-right', 10,
         '-p', 10,
-        '-t', 'css'
     ];
 };

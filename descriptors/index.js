@@ -1,4 +1,4 @@
 module.exports = {
-    'devtools': require('./DevToolsDescriptor'),
-    'css': require('./CSSDescriptor')
+    'application/json': require('./JSONDescriptor'),
+    'text/css': require('./CSSDescriptor')
 };

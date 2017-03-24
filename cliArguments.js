@@ -6,16 +6,14 @@ class CLIArguments {
      * @param {string} inputFolderPath
      * @param {string} outputImagePath
      * @param {string} outputDescriptorPath
-     * @param {string} descriptorType
      * @param {number} paddingRight
      * @param {number} paddingBottom
      * @param {?{width: number, height: number}} gridCell
      */
-    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom, gridCell) {
+    constructor(inputFolderPath, outputImagePath, outputDescriptorPath, paddingRight, paddingBottom, gridCell) {
         this.inputFolderPath = inputFolderPath;
         this.outputImagePath = outputImagePath;
         this.outputDescriptorPath = outputDescriptorPath;
-        this.descriptorType = descriptorType;
         this.paddingRight = paddingRight;
         this.paddingBottom = paddingBottom;
         this.gridCell = gridCell;
@@ -25,7 +23,6 @@ class CLIArguments {
         var inputFolderPath;
         var outputImagePath;
         var outputDescriptorPath;
-        var descriptorType;
         var paddingBottom;
         var paddingRight;
         var gridCell = null;
@@ -48,10 +45,6 @@ class CLIArguments {
                 var dirName = path.dirname(value);
                 var fileName = path.basename(value);
                 outputDescriptorPath = path.join(resolvePath(dirName), fileName);
-            } else if (key === '-t' || key === '--descriptor-type') {
-                if (descriptorType)
-                    die('duplicate argument --descriptor-type');
-                descriptorType = value.toLowerCase();
             } else if (key === '-p' || key === '--padding') {
                 if (paddingBottom !== undefined || paddingRight !== undefined)
                     die('cannot set --padding argument when either --padding-bottom or --padding-right is given');
@@ -90,8 +83,6 @@ class CLIArguments {
             die("Required argument --output-image is missing");
         if (!outputDescriptorPath)
             die("Required argument --output-descriptor is missing");
-        if (!descriptorType)
-            die("Required argument --descriptor-type is missing");
 
         // Assign default options.
         if (!paddingRight)
@@ -105,7 +96,7 @@ class CLIArguments {
             die("Folder for output image does not exist " + outputImagePath);
         if (!fs.existsSync(path.dirname(outputDescriptorPath)))
             die("Folder for output descriptor does not exist " + outputDescriptorPath);
-        return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, descriptorType, paddingRight, paddingBottom, gridCell);
+        return new CLIArguments(inputFolderPath, outputImagePath, outputDescriptorPath, paddingRight, paddingBottom, gridCell);
     }
 }
 

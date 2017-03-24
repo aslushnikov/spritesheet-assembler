@@ -9,6 +9,5 @@ module.exports = function(outputFolder) {
         '-o', path.join(outputFolder, 'spritesheet.UNKNOWN'),
         '-d', path.join(outputFolder, 'icons.css'),
         '-p', 2,
-        '-t', 'css'
     ];
 };

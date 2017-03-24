@@ -9,6 +9,5 @@ module.exports = function(outputFolder) {
         '-o', path.join(outputFolder, 'spritesheet.svg'),
         '-d', path.join(outputFolder, 'icons.css'),
         '--padding-bottom', 10,
-        '-t', 'css'
     ];
 };

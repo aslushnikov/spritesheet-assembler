@@ -8,6 +8,5 @@ module.exports = function(outputFolder) {
         '-i', __dirname,
         '-o', path.join(outputFolder, 'spritesheet.svg'),
         '-d', path.join(outputFolder, 'icons.css'),
-        '-t', 'css'
     ];
 };

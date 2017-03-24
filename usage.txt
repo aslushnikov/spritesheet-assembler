@@ -3,11 +3,9 @@ Usage: spass [arguments]
 Arguments:
   -i, --input-folder        path to the input folder with sprites to assemble
   -o, --output-image        path to the output folder
-  -d, --output-descriptor   path to the output descriptor file
-  -t, --descriptor-type     type of descriptor to generate. Currently supported
-                            values are:
-                                1. css - generate css descriptor
-                                2. devtools - generate devtools descriptor
+  -d, --output-descriptor   path to the output descriptor file. Currently,
+                            only descriptors of types *.CSS and *.JSON are
+                            supported.
   -p, --padding             padding between sprites. Sets both --padding-right
                             and --padding-bottom to the same value
   --padding-right           set horizontal padding between sprites
@@ -17,5 +15,5 @@ Arguments:
   -h, --help                show help message
 
 Examples:
-    spass -i icons/ -o spritesheet.svg -d spritesheet.css -t css
-    spass -i icons/ -o spritesheet.svg -d spritesheet.css -t css --grid-cell 20x20
+    spass -i icons/ -o spritesheet.svg -d spritesheet.css
+    spass -i icons/ -o spritesheet.svg -d spritesheet.json --grid-cell 20x20

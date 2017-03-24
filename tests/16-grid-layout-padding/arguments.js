@@ -10,6 +10,5 @@ module.exports = function(outputFolder) {
         '-d', path.join(outputFolder, 'icons.css'),
         '--grid-cell', '30x30',
         '-p', '10',
-        '-t', 'css'
     ];
 };

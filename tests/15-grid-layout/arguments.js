@@ -9,6 +9,5 @@ module.exports = function(outputFolder) {
         '-o', path.join(outputFolder, 'spritesheet.svg'),
         '-d', path.join(outputFolder, 'icons.css'),
         '--grid-cell', '30x30',
-        '-t', 'css'
     ];
 };
