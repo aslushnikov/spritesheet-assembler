@@ -37,7 +37,7 @@ The code is split into three parts:
 `Sprite` and `SpriteSheet`, as well as the bin-packing algorithm itself. This
 folder **doesn't and shouldn't** depend on any core node modules.
 - `compositors/` - this folder contains *compositors*, which are responsible for building actual spritesheet out of sprites. Compositors are associated with export mime types, the relation is defined in `compositors/index.js`.
-- `descriptors/` - this folder contains spritesheet descriptor generators. Descriptor generators are associated with the name (which is passed to the utility via `-t` argument). The relation between names and descriptor generators is defined in `descriptors/index.js`.
+- `descriptors/` - this folder contains spritesheet descriptor generators. Descriptor generators are associated with descriptor mime type, the relation is defined in `descriptors/index.js`.
 
 ## Tests
 
