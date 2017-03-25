@@ -29,8 +29,8 @@ class SVGCompositor {
 
       // Wrap sprite to SVG container with proper position.
       var position = spriteSheet.spritePosition(sprite);
-      var prefix = `<svg x="${position.x}" y="${position.y}" width="${sprite.width}" height="${sprite.height}">`;
-      var suffix = '</svg>';
+      var prefix = `<g transform='translate(${position.x} ${position.y})'>`;
+      var suffix = '</g>';
       spriteSVG = prefix + spriteSVG + suffix;
 
       svgBody += spriteSVG;
