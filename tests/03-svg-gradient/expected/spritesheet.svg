@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><svg width="45" height="45" xmlns="http://www.w3.org/2000/svg"><svg x="0" y="0" width="20" height="20"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
+<?xml version="1.0" encoding="utf-8"?><svg width="45" height="45" xmlns="http://www.w3.org/2000/svg"><g transform='translate(0 0)'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
     <defs>
         <linearGradient id="sprite1_a">
             <stop offset="0" stop-color="#fff" stop-opacity=".02"/>
@@ -8,7 +8,7 @@
         <radialGradient xlink:href="#sprite1_a" id="sprite1_b" cx="2.646" cy="294.354" fx="2.646" fy="294.354" r="2.646" gradientUnits="userSpaceOnUse" spreadMethod="pad"/>
     </defs>
     <path fill="url(#sprite1_b)" d="M0 291.708h5.292V297H0z" transform="translate(0 -291.708)"/>
-</svg></svg><svg x="25" y="0" width="20" height="20"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
+</svg></g><g transform='translate(25 0)'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
     <defs>
         <linearGradient id="sprite2_a">
             <stop offset="0" stop-color="#fff" stop-opacity=".02"/>
@@ -18,7 +18,7 @@
         <radialGradient xlink:href="#sprite2_a" id="sprite2_b" cx="2.646" cy="294.354" fx="2.646" fy="294.354" r="2.646" gradientUnits="userSpaceOnUse" spreadMethod="pad"/>
     </defs>
     <path fill="url(#sprite2_b)" d="M0 291.708h5.292V297H0z" transform="translate(0 -291.708)"/>
-</svg></svg><svg x="0" y="25" width="20" height="20"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
+</svg></g><g transform='translate(0 25)'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
     <defs>
         <linearGradient id="sprite3_a">
             <stop offset="0" stop-color="#fff" stop-opacity=".02"/>
@@ -28,7 +28,7 @@
         <radialGradient xlink:href="#sprite3_a" id="sprite3_b" cx="2.646" cy="294.354" fx="2.646" fy="294.354" r="2.646" gradientUnits="userSpaceOnUse" spreadMethod="pad"/>
     </defs>
     <path fill="url(#sprite3_b)" d="M0 291.708h5.292V297H0z" transform="translate(0 -291.708)"/>
-</svg></svg><svg x="25" y="25" width="20" height="20"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
+</svg></g><g transform='translate(25 25)'><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 5.2916665 5.2916665">
     <defs>
         <linearGradient id="sprite4_a">
             <stop offset="0" stop-color="#fff" stop-opacity=".02"/>
@@ -38,4 +38,4 @@
         <radialGradient xlink:href="#sprite4_a" id="sprite4_b" cx="2.646" cy="294.354" fx="2.646" fy="294.354" r="2.646" gradientUnits="userSpaceOnUse" spreadMethod="pad"/>
     </defs>
     <path fill="url(#sprite4_b)" d="M0 291.708h5.292V297H0z" transform="translate(0 -291.708)"/>
-</svg></svg></svg>
+</svg></g></svg>
