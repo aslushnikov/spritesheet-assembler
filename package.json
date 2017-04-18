@@ -17,6 +17,7 @@
   "license": "SEE LICENSE IN https://chromium.googlesource.com/chromium/src/+/master/LICENSE",
   "devDependencies": {
     "colors": "^1.1.2",
+    "google-closure-compiler-js": "^20170409.0.0",
     "rimraf": "^2.6.0"
   },
   "dependencies": {
