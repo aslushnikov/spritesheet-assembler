@@ -23,6 +23,9 @@ class SVGCompositor {
         var headerIndexEnd = spriteSVG.indexOf('?>');
         spriteSVG = spriteSVG.substring(headerIndexEnd + 2);
       }
+      
+			spriteSVG = spriteSVG.replace('<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->', '');
+			spriteSVG = spriteSVG.replace('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">', '');
 
       // Rename sprite ids to avoid clashing.
       spriteSVG = postsvg().use(renameId({pattern: 'sprite' + (++spriteId) + '_[id]'})).process(spriteSVG);
