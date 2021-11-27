@@ -24,8 +24,14 @@ class SVGCompositor {
         spriteSVG = spriteSVG.substring(headerIndexEnd + 2);
       }
       
-      spriteSVG = spriteSVG.replace('<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->', '');
-      spriteSVG = spriteSVG.replace('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">', '');
+      // Strip comments, if any.
+			spriteSVG = spriteSVG.replace(new RegExp('(<!--([^>]*)-->)', 'g'), '');
+			
+			// Strip Doctype, if any.
+			spriteSVG = spriteSVG.replace(new RegExp('(<!DOCTYPE([^>]*)">)', 'g'), '');
+			
+			//Strip Svg tag.
+			spriteSVG = spriteSVG.replace(new RegExp('(<svg([^>]*)">)|(</svg>)', 'g'), '');
 
       // Rename sprite ids to avoid clashing.
       spriteSVG = postsvg().use(renameId({pattern: 'sprite' + (++spriteId) + '_[id]'})).process(spriteSVG);
