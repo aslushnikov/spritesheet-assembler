@@ -25,13 +25,13 @@ class SVGCompositor {
       }
       
       // Strip comments, if any.
-			spriteSVG = spriteSVG.replace(new RegExp('(<!--([^>]*)-->)', 'g'), '');
+      spriteSVG = spriteSVG.replace(new RegExp('(<!--([^>]*)-->)', 'g'), '');
 			
-			// Strip Doctype, if any.
-			spriteSVG = spriteSVG.replace(new RegExp('(<!DOCTYPE([^>]*)">)', 'g'), '');
+      // Strip Doctype, if any.
+      spriteSVG = spriteSVG.replace(new RegExp('(<!DOCTYPE([^>]*)">)', 'g'), '');
 			
-			//Strip Svg tag.
-			spriteSVG = spriteSVG.replace(new RegExp('(<svg([^>]*)">)|(</svg>)', 'g'), '');
+      //Strip Svg tag.
+      spriteSVG = spriteSVG.replace(new RegExp('(<svg([^>]*)">)|(</svg>)', 'g'), '');
 
       // Rename sprite ids to avoid clashing.
       spriteSVG = postsvg().use(renameId({pattern: 'sprite' + (++spriteId) + '_[id]'})).process(spriteSVG);
